@@ -1,0 +1,29 @@
+
+気づき
+	list型のappendは、「参照渡し」でなく「値渡し」で挿入する
+
+
+ソース
+	let uiLabel1: UILabel = new UILabel()
+	let uiLabel1: UILabel = new UILabel()
+	var labelList: list = [UILabel]
+
+	labelList.append(uiLabel1)
+	labelList.append(uiLabel1)
+	
+	self.view.addsubView(labelList[0])
+	self.view.addsubView(labelList[1])
+	
+	&labelList[0] != &uiLabel1
+	
+	★uiLabelを更新しても、画面には反映されない
+	
+コメント
+	上記に2hほどはまってました。
+	C言語みたく、明示的に&, *などを表示できたほうがぱっと見すぐわかっていいですね。
+	→私もですが、ポインタなどの考えは最初なかなか理解できなかったですが笑
+	
+	
+
+補足
+	https://qiita.com/koher/items/6f54eafac59793e7c364
