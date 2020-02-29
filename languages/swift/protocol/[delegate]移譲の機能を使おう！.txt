@@ -6,23 +6,28 @@
 
 ソース
 	// 移譲するprotocolの定義
-	protocol outProtcol: class {
+	protocol outProtocol: class {
 		func sendMessage()
 	}
 
 	// 移譲元クラスの定義
-	class receaveClass {
+	class receaveClass: outProtocol {		// point: 移譲元クラスでprotocolを継承する
 		init(){
 			var sampleClass: sendClass = new sendClass()
-			sampleClass.output = self
+			sampleClass.output = self				// point: 移譲メソッドを自身に定義する
+		}
+
+		// 移譲メソッドの実装								// point: 実装しないとエラー発生
+		output(){
+			//
 		}
 	}
 
 	// 移譲先クラスの定義
 	class sendClass {
-		output: outProtcol
+		output: outProtocol
 
-		func sample(){
+		func sample(){										// point: 移譲メソッドを定義する
 			output.sendMessage()
 		}
 	}
@@ -34,6 +39,6 @@
 	→ちゃんと調査します
 
 		tableview.delegate = self
-		
+
 	ですので、移譲先クラスでプロトコルの宣言は「delegate」とした方が統一感があって良いのかなと思いました。
 	→サンプルを見てるとoutputと表記してるものも結構見かけました
