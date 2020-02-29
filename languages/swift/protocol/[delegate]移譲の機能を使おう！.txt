@@ -1,0 +1,39 @@
+テーマ
+	あるクラスでのイベントを別のクラスに「移譲」しよう！
+
+前提
+	移譲元クラスは、移譲先クラスからインスタンス生成されてないといけない
+
+ソース
+	// 移譲するprotocolの定義
+	protocol outProtcol: class {
+		func sendMessage()
+	}
+
+	// 移譲元クラスの定義
+	class receaveClass {
+		init(){
+			var sampleClass: sendClass = new sendClass()
+			sampleClass.output = self
+		}
+	}
+
+	// 移譲先クラスの定義
+	class sendClass {
+		output: outProtcol
+
+		func sample(){
+			output.sendMessage()
+		}
+	}
+
+コメント
+	tableviewやscrollviewのdelegateはよく使いますが、上記のようにprotocolが作成されています。
+	tableviewの場合、以下みたく設定することがありますが、このdelegateの部分は上記で言うとこの
+	「output（outProtocolプロトコルの定義）」に当たるものになると思います。
+	→ちゃんと調査します
+
+		tableview.delegate = self
+		
+	ですので、移譲先クラスでプロトコルの宣言は「delegate」とした方が統一感があって良いのかなと思いました。
+	→サンプルを見てるとoutputと表記してるものも結構見かけました
