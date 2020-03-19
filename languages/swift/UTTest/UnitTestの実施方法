@@ -1,0 +1,25 @@
+テーマ
+	本記事ではXCodeにおけるUnitTestの実施方法をメモします
+
+手順
+  1. UnitTest用のtargetを作成する
+    1.1. File > New > Target...を押下する
+    1.2. Testセクションの中のiOS Unit Testing Bundleを選択してNextを押下する
+    1.3. 各種情報を入力してFinishを押下する
+
+  2. pod installの実施（podを使用する場合）
+    コード（pod）に従って、podをUnitTest用のtargetにinstallする
+
+    # これを実施しないと、podのライブラリを使用してUnitTestができません！
+
+  3. テストケースの作成
+
+
+コード
+  pod
+    手順1.で作成したUnitTest用のtargetを追加する
+
+    target 'swift_UnitTest' do
+      use_frameworks!
+      pod ''
+    end
