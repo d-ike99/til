@@ -1,0 +1,48 @@
+タイトル
+	リポジトリの作成方法をまとめる
+	→コマンド、tortoise git
+
+補足説明
+	作成するリポジトリの種類
+		・ローカルリポジトリ：作業用のリポジトリ
+		　　　　　　　　　　　→実際にファイルを格納して作業する。
+		・リモートリポジトリ：共有用のリポジトリ
+		　　　　　　　　　　　→実際にファイルは格納しない。開発メンバと「共有」するためのリポジトリ
+		
+		★githubで生成するリポジトリも「リモートリポジトリ」です。
+
+リポジトリの作成方法
+	・コマンド
+		git init <任意のディレクトリ（指定しない場合はカレントディレクトリ）> <--bare --shared>
+		
+			--bare --shared: リモートリポジトリを作成するコマンド（ない場合はローカルリポジトリ）
+
+	・tortoise git
+		①任意の空フォルダを作成する
+		②以下押下
+			右クリック→「Git Create repository here」
+		③開かれるダイアログで「OK」を押下
+			Make it Bare(No working directories)に
+				・チェックを付けない：ローカルリポジトリ
+				・チェックを付ける　：リモートリポジトリ
+
+プッシュに必要な設定について
+	gitの設定
+		・名前
+		・メール
+		・リモートリポジトリ
+		
+	設定方法
+		・コマンド
+			git config --global user.name "ユーザー名"
+			git config --global user.email メールアドレス
+		
+		・tortoise git
+			エクスプローラにて、
+				右クリック→TortoiseGit→Settings
+			Settingsウィンドウにて
+				Gitタブを選択し、「Name」,「Email」を設定し、OKボタンを押下する
+
+参考
+	https://eng-entrance.com/git-init
+	https://laboradian.com/set-git-user-and-email/
