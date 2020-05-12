@@ -1,0 +1,61 @@
+[タイトル]
+	複数のコミットを一つにまとめる方法について説明する
+	→コマンド、tortoise git
+
+[方法]
+	・コマンド
+		①リベース提示書を作成する（コミットをまとめる対象となるコミッ
+		トログの指定）
+			以下の操作を実施することで、「リベース定義書が開かれる（vim）」
+				ex1. head含めheadから4つ分のログを対象とする場合
+					git rebase -i HEAD~4
+				
+				ex2. 任意のコミットログをまとめる
+					git rebase -i コミットID
+					
+					★「指定するコミットID以降」のコミットログがrebase対象となる
+		
+		②提示コマンドの設定（リベース対象となるコミットログの状態を設定する）
+			①で開かれたリベース定義書にて、提示コマンドを設定しなおす（デフォルトは全てp(pick)）
+				p(pick): コミットをそのまま残す
+				r(reword)：コミットメッセージを変更
+				e(edit)：コミット自体の内容を編集
+				s(squash)：直前のpicを指定したコミット（メッセージ含め）に統合する。
+				f(fixup):直前のpickを指定したコミット（メッセージは破棄する）に統合する。
+				
+				★ベースとなるコミットログ（統合元となるコミットログ）は、「古いタイムスタンプ」のログを指定する！
+				　基本的に過去のログはいじることができないですので（共有されてればなおさら）、新しいログをいじるといった考えになるのでしょうか。
+				　
+				　いままでリベースする機会がなかったのですが、リベースするたびに、どっちのログがベースになるんだっけ？
+				　と混乱してたので、自分なりに考えを整理してみました！
+				　
+	・tortoise git
+		①gitリポジトリ配下にて、
+			・右クリック
+			　tortoise git→show log
+		
+		②tortoise git画面にて「統合したい」コミットログを選択する
+		③右クリック→conbine one comitt
+		④開かれたダイアログにて
+			コミットメッセージを修正してOKボタンを押下する
+
+注意事項！
+	↓整備中（メモ…）
+			$ git rebase -i コミットログ
+		fatal: It seems that there is already a rebase-merge directory, and
+		I wonder if you are in the middle of another rebase.  If that is the
+		case, please try
+		        git rebase (--continue | --abort | --skip)
+		If that is not the case, please
+		        rm -fr ".git/rebase-merge"
+		and run me again.  I am stopping in case you still have something
+		valuable there.
+
+
+参考
+	指示書
+		https://qiita.com/tsuuuuu_san/items/f708a9f7ea8ab8eb6945
+	
+	強制プッシュ
+		http://www-creators.com/archives/2020
+
